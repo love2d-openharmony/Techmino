@@ -7,7 +7,7 @@ local langList={
     pt="Português",
     id="Bahasa Indonesia",
     ja="日本語",
-    symbol="?????",
+    ru="Русский",
     zh_code="Code(zh);",
     vi="Tiếng Việt",
 }
@@ -59,7 +59,7 @@ scene.widgetList={
     WIDGET.newButton{x=270,y=570,w=330,h=100,font=35, fText=langList.id,      color='Y',sound='click',code=function() _setLang('id') end},
 
     WIDGET.newButton{x=640,y=210,w=330,h=100,font=40, fText=langList.pt,      color='A',sound='click',code=function() _setLang('pt') end},
-    WIDGET.newButton{x=640,y=330,w=330,h=100,font=40, fText=langList.symbol,  color='G',sound='click',code=function() _setLang('symbol') end},
+    WIDGET.newButton{x=640,y=330,w=330,h=100,font=40, fText=langList.ru,      color='G',sound='click',code=function() _setLang('ru') end},
     WIDGET.newButton{x=640,y=450,w=330,h=100,font=40, fText=langList.ja,      color='J',sound='click',code=function() _setLang('ja') end},
     WIDGET.newButton{x=640,y=570,w=330,h=100,font=40, fText=langList.vi,      color='L',sound='click',code=function() _setLang('vi') end},
 
