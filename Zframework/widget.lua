@@ -1377,7 +1377,7 @@ WIDGET.indexMeta={
 function WIDGET.setWidgetList(list)
     WIDGET.unFocus(true)
     WIDGET.active=list or NONE
-    WIDGET.cursorMove(SCR.xOy:inverseTransformPoint(love.mouse.getPosition()))
+    WIDGET.cursorMove(xOy:inverseTransformPoint(love.mouse.getPosition()))
 
     -- Reset all widgets
     if list then
@@ -1519,6 +1519,7 @@ function WIDGET.resize(w,h)
     widgetCanvas=gc.newCanvas(w,h)
 end
 function WIDGET.draw()
+    gc_replaceTransform(xOy)
     gc_setCanvas({stencil=true},widgetCanvas)
         gc_translate(0,-WIDGET.scrollPos)
         for _,W in next,WIDGET.active do
@@ -1540,7 +1541,6 @@ function WIDGET.draw()
     gc_setBlendMode('alpha','premultiplied')
     gc_draw(widgetCanvas)
     gc_setBlendMode('alpha')
-    gc_replaceTransform(SCR.xOy)
 end
 
 return WIDGET
