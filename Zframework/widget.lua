@@ -1519,28 +1519,30 @@ function WIDGET.resize(w,h)
     widgetCanvas=gc.newCanvas(w,h)
 end
 function WIDGET.draw()
-    gc_replaceTransform(xOy)
-    gc_setCanvas({stencil=true},widgetCanvas)
-        gc_translate(0,-WIDGET.scrollPos)
-        for _,W in next,WIDGET.active do
-            if not W.hide then W:draw() end
-        end
-        gc_origin()
-        gc_setColor(1,1,1)
-        if WIDGET.scrollHeight>0 then
-            if WIDGET.scrollPos>0 then
-                gc_draw(upArrowIcon,scr_w*.5,10,0,SCR.k,nil,upArrowIcon:getWidth()*.5,0)
+    gc_push('transform')
+        gc_replaceTransform(xOy)
+        gc_setCanvas({stencil=true},widgetCanvas)
+            gc_translate(0,-WIDGET.scrollPos)
+            for _,W in next,WIDGET.active do
+                if not W.hide then W:draw() end
             end
-            if WIDGET.scrollPos<WIDGET.scrollHeight then
-                gc_draw(downArrowIcon,scr_w*.5,scr_h-10,0,SCR.k,nil,downArrowIcon:getWidth()*.5,downArrowIcon:getHeight())
+            gc_origin()
+            gc_setColor(1,1,1)
+            if WIDGET.scrollHeight>0 then
+                if WIDGET.scrollPos>0 then
+                    gc_draw(upArrowIcon,scr_w*.5,10,0,SCR.k,nil,upArrowIcon:getWidth()*.5,0)
+                end
+                if WIDGET.scrollPos<WIDGET.scrollHeight then
+                    gc_draw(downArrowIcon,scr_w*.5,scr_h-10,0,SCR.k,nil,downArrowIcon:getWidth()*.5,downArrowIcon:getHeight())
+                end
+                gc_setBlendMode('multiply','premultiplied')
+                gc_draw(widgetCover,nil,nil,nil,scr_w,scr_h/360)
             end
-            gc_setBlendMode('multiply','premultiplied')
-            gc_draw(widgetCover,nil,nil,nil,scr_w,scr_h/360)
-        end
-    gc_setCanvas({stencil=false})
-    gc_setBlendMode('alpha','premultiplied')
-    gc_draw(widgetCanvas)
-    gc_setBlendMode('alpha')
+        gc_setCanvas({stencil=false})
+        gc_setBlendMode('alpha','premultiplied')
+        gc_draw(widgetCanvas)
+        gc_setBlendMode('alpha')
+    gc_pop()
 end
 
 return WIDGET

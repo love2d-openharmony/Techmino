@@ -4,7 +4,13 @@ end
 
 local appId='1288557386700951554'
 
-local ffi=require"ffi"
+local ok,ffi=pcall(require,"ffi")
+if not ok then
+    return {update=NULL}
+end
+if not (jit and jit.off) then
+    return {update=NULL}
+end
 
 local RPC_C
 if SYSTEM=='Windows' then

@@ -1,6 +1,6 @@
 local system=love._os
 if system=='OS X' then system='macOS' end
-MOBILE=system=='Android' or system=='iOS'
+MOBILE=system=='Android' or system=='iOS' or system=='OHOS'
 FNNS=system:find'\79\83' -- What does FNSF stand for? IDK so don't ask me lol
 
 if system=='Web' then
